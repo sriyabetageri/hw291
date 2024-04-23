@@ -54,7 +54,6 @@ while (robot.step(timestep) != -1):
     key_pressed = keyboard.getKey()
     print(key_pressed)
     
-    """ code to recognize a sassafras tree. Here, 
     sassafras trees recognition color is green """
     if(cam.getRecognitionObjects()):
         first_object = cam.getRecognitionObjects()[0]
@@ -69,11 +68,9 @@ while (robot.step(timestep) != -1):
     
     
 
-    # when you a key, automode variables value is toggled
     if(prev_key == -1  and  key_pressed == 65):
         autoMode = not autoMode
 
-    # press "s" key to take pictures
     if(prev_key == -1  and  key_pressed==83):
         cam.getImage()
         pic_name= "pic"+str(pic_num)+".png"
@@ -87,12 +84,10 @@ while (robot.step(timestep) != -1):
         if(ds_left_value<1000 or ds_right_value<1000):
             number_of_turns = 8
         
-        # when turns have not started, we choose a random direction    
         if(number_of_turns == 0):
             random_direction = random.choice([0,1])
          
         if(number_of_turns > 0):
-            # In auto mode, turns when an obstacle is detected.
             number_of_turns = number_of_turns - 1
             if(random_direction == 0):
                 wheel1.setVelocity(-speed)
@@ -105,7 +100,7 @@ while (robot.step(timestep) != -1):
                 wheel3.setVelocity(speed)
                 wheel4.setVelocity(-speed)
         else:
-            # In auto mode, keeps going forward when no obstacles are detected.
+           
             wheel1.setVelocity(speed)
             wheel2.setVelocity(speed)
             wheel3.setVelocity(speed)
@@ -113,35 +108,32 @@ while (robot.step(timestep) != -1):
          
     
     if(not autoMode):
-        # front movement - press up arrow key
+        
         if(key_pressed == 315):
             wheel1.setVelocity(speed)
             wheel2.setVelocity(speed)
             wheel3.setVelocity(speed)
             wheel4.setVelocity(speed)
             
-        # back movement - press down arrow key   
+      
         if(key_pressed == 317):
             wheel1.setVelocity(-speed)
             wheel2.setVelocity(-speed)
             wheel3.setVelocity(-speed)
             wheel4.setVelocity(-speed)
         
-        # left movement - press left arrow key      
         if(key_pressed == 314):
             wheel1.setVelocity(-speed)
             wheel2.setVelocity(speed)
             wheel3.setVelocity(-speed)
             wheel4.setVelocity(speed)
         
-        # right movement - press right arrow key     
         if(key_pressed == 316):
             wheel1.setVelocity(speed)
             wheel2.setVelocity(-speed)
             wheel3.setVelocity(speed)
             wheel4.setVelocity(-speed)
-        
-        # if no key is pressed   
+ 
         if(key_pressed == -1):
             wheel1.setVelocity(0)
             wheel2.setVelocity(0)
